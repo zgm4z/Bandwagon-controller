@@ -1,0 +1,27 @@
+mat-card-title span {
+  margin-right: 12px;
+}
+
+.item-name {
+  width: 50%;
+  text-align: left;
+}
+
+.item-value {
+  width: 50%;
+  text-align: left;
+}
+
+.item-title {
+  align-content: left;
+}
+
+.actions-btn button {
+}
+mat-card {
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  word-break: break-all;
+}

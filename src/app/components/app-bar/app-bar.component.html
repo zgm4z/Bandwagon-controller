@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <button mat-button>
+    <mat-icon>{{icon}}</mat-icon>
+  </button>
+  <h1 class="title">
+    {{title}}
+  </h1>
+  <span class="fill"></span>
+  <div class="right">
+    <button *ngIf="main" mat-button (click)="emitterEvent()">
+      <span>Add New </span>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

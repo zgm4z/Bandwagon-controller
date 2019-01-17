@@ -1,0 +1,13 @@
+export const base = 'https://api.64clouds.com/v1/';
+export const start = `${base}start`;
+export const stop = `${base}stop`;
+export const restart = `${base}restart`;
+export const kill = `${base}kill`;
+export const getLiveServiceInfo = `${base}getLiveServiceInfo`;
+export const getServiceInfo = `${base}getServiceInfo`;
+export const getAvailableOS = `${base}getAvailableOS`;
+export const reinstallOS = `${base}reinstallOS`;
+export const resetRootPassword = `${base}resetRootPassword`;
+export const getRawUsageStats = `${base}getRawUsageStats`;
+export const setHostname = `${base}setHostname`;
+export const getRateLimitStatus = `${base}getRateLimitStatus`;

@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Add New Sever</h2>
+<div mat-dialog-content class="container">
+  <form #serverForm="ngForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Type Server Name</mat-label>
+      <input name="server_name" #name required [(ngModel)]="serverModel.name" matInput placeholder="Type Server Name">
+      <mat-icon matSuffix>create</mat-icon>
+      <mat-error *ngIf="!name.invalid">this field is require</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Type Sever API VEID</mat-label>
+      <input name="veid" #vid required [(ngModel)]="serverModel.api_veid" matInput placeholder="Type Sever API VEID"/>
+      <mat-icon matSuffix>create</mat-icon>
+      <mat-error *ngIf="!vid.invalid">this field is require</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Type Server API KEY</mat-label>
+      <input name="api_key" #key required [(ngModel)]="serverModel.api_key" matInput placeholder="Type Server API KEY">
+      <mat-icon matSuffix>create</mat-icon>
+      <mat-error *ngIf="!key.invalid">this field is require</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="saveServer()" [disabled]="!serverForm.valid" color="primary">Save</button>
+  <button class="cancelBtn" mat-raised-button color="warn" [mat-dialog-close]="true">Cancel</button>
+</mat-dialog-actions>

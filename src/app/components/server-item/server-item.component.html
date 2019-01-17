@@ -1,0 +1,115 @@
+<mat-card *ngIf="!loading">
+  <mat-card-title>
+    <span>{{name}}</span>
+    <span>{{liveInfo.plan}}</span>
+  </mat-card-title>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <table>
+      <tr class="item-container">
+        <td class="item-name">Physical Location:</td>
+        <td class="item-value">{{liveInfo.node_location}}</td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">Status</td>
+        <td class="item-value">{{vps_status}}
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">VM Type:</td>
+        <td class="item-value">{{liveInfo.vm_type}}</td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">IP address:</td>
+        <td class="item-value">{{liveInfo.ip_addresses}}</td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">SSH Port:</td>
+        <td class="item-value">{{liveInfo.ssh_port}}</td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">Operating System:</td>
+        <td class="item-value">{{liveInfo.os}}</td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">Load Average</td>
+        <td class="item-value">{{load_average}}</td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">RAM Usage</td>
+        <td class="item-value">
+          <p>
+            <mat-progress-bar
+              [value]="ram_progress"></mat-progress-bar>
+          </p>
+          <p></p>
+          {{ram_used}} / {{ram_total}} MB
+        </td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">Disk Usage</td>
+        <td class="item-value">
+          <p>
+            <mat-progress-bar [value]="disk_bar"></mat-progress-bar>
+          </p>
+          <p>
+            {{disk_used}} / {{disk_space}} GB
+          </p>
+        </td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">Swap Usage</td>
+        <td class="item-value">
+          <p>
+            <mat-progress-bar
+              [value]="swap_used /swap_total *100"></mat-progress-bar>
+          </p>
+          <p>
+            {{swap_used }} / {{
+            swap_total }}
+            MB
+          </p>
+        </td>
+      </tr>
+      <mat-divider></mat-divider>
+
+      <tr class="item-container">
+        <td class="item-name">Bandwidth usage</td>
+        <td class="item-value">
+          <p>
+            <mat-progress-bar [value]="data_used / data_total *100"></mat-progress-bar>
+          </p>
+          <p>
+            {{data_used}} / {{data_total}} GB
+          </p>
+        </td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr class="item-container">
+        <td class="item-name">Bandwidth usage Rest:</td>
+        <td class="item-value">{{(liveInfo.data_next_reset*1000) | date:"yyyy-MM-dd"}}</td>
+      </tr>
+      <mat-divider></mat-divider>
+      <tr>
+        <td>Actions:</td>
+        <td class="actions-btn">
+          <button mat-button [disabled]="!can_action" (click)="doAction('start')" color="primary">Start</button>
+          <button mat-button [disabled]="!can_action" (click)="doAction('stop')" color="warn">Stop</button>
+          <button mat-button [disabled]="!can_action" (click)="doAction('restart')" color="warn">Restart</button>
+          <button mat-button [disabled]="!can_action" (click)="doAction('kill')" color="warn">Kill</button>
+          <a mat-button [disabled]="!can_action" (click)="goToDetail()" color="primary">Detail</a>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+<mat-spinner *ngIf="loading">
+</mat-spinner>

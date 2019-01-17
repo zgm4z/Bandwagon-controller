@@ -1,0 +1,17 @@
+<div class="container">
+  <app-app-bar [main]="true" icon="home" title="Bandwagon VPS Controller" (addNew)="addNewServer()"></app-app-bar>
+</div>
+<div class="server-list">
+  <div class="server-item">
+    <div *ngIf="savedServers.length>0">
+      <div *ngFor="let item of savedServers">
+        <app-server-item name="{{item.name}}" key="{{item.api_key}}"
+                         veid="{{item.api_veid}}"></app-server-item>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <div *ngIf="savedServers.length==0" class="server-item">
+      <h3>you don't have any servers</h3>
+    </div>
+  </div>
+</div>

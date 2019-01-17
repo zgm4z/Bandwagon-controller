@@ -1,0 +1,11 @@
+<div class="content">
+  <div class="app-bar">
+    <app-app-bar title="Server Detail" [main]="false" icon="settings"></app-app-bar>
+  </div>
+  <div class="body">
+    <app-server-item [veid]="veid" [key]="key" [name]="name"></app-server-item>
+    <app-server-detail-item title="detail statistic" subtitle="show your vps detail statistic with graph">
+      <app-vps-detail-statistic [key]="key" [veid]="veid"></app-vps-detail-statistic>
+    </app-server-detail-item>
+  </div>
+</div>
