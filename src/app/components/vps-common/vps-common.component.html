@@ -14,6 +14,15 @@
     <button mat-button color="primary" (click)="checkoutReinstallOs()" [disabled]="!selectedOs">install</button>
   </div>
   <mat-divider></mat-divider>
-  <div class="reset-pwd-container"></div>
+  <div class="reset-pwd-container">
+    <h3>root password modification</h3>
+    <p style="font-size: 12px;color: red">this operation will reset current vps root password</p>
+    <div class="pas-tips">
+      <button mat-raised-button color="warn" [disabled]="!canRestPwd" (click)="resetPassword()">rest root password
+      </button>
+      <p>current password is: <span class="pwd">{{prevPwd}}</span></p>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
   <div class="migrate-dc-container"></div>
 </div>

@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HttpVpsService} from '../../providers/http-vps.service';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {WarnDialogComponent} from '../warnning-dialog/warn-dialog.component';
+import {Store} from '../../model/UserDataKeys';
 
 @Component({
   selector: 'app-vps-common',
@@ -15,12 +16,20 @@ export class VpsCommonComponent implements OnInit {
   enableOs: Array<string>;
   currentOs: string;
   selectedOs: string;
+  prevPwd: string;
+  canRestPwd = true;
+  private Store = require('electron-store');
+  store: Store = new this.Store();
 
-  constructor(private api: HttpVpsService, private dialog: MatDialog) {
+  constructor(private api: HttpVpsService, private dialog: MatDialog,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
     this.getOs();
+    if (this.store.has(`${this.veid}_root`)) {
+      this.prevPwd = this.store.get(`${this.veid}_root`, '');
+    }
   }
 
 
@@ -35,7 +44,9 @@ export class VpsCommonComponent implements OnInit {
   checkoutReinstallOs() {
     this.showDialog((res) => {
       if (res) {
-        this.api.reInstallOS(this.veid, this.key, this.selectedOs).subscribe();
+        this.api.reInstallOS(this.veid, this.key, this.selectedOs).subscribe(() => {
+          this.snackBar.open('install new os task run in background', 'Get it', {duration: 5 * 1000});
+        });
       }
     });
   }
@@ -43,5 +54,20 @@ export class VpsCommonComponent implements OnInit {
   showDialog(afterClose: Function) {
     const ref = this.dialog.open(WarnDialogComponent);
     ref.afterClosed().subscribe(v => afterClose(v));
+  }
+
+  resetPassword() {
+    this.canRestPwd = false;
+    this.showDialog((res) => {
+      if (res) {
+        this.api.resetRootPassword(this.veid, this.key)
+          .subscribe(result => {
+            this.prevPwd = result.password;
+            this.canRestPwd = true;
+            this.store.set(`${this.veid}_root`, this.prevPwd);
+          });
+      }
+    });
+
   }
 }
