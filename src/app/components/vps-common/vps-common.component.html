@@ -1,0 +1,13 @@
+<div class="vps-common-container">
+  <div class="reinstall-os-container">
+    <h3>install new os</h3>
+    <mat-form-field>
+      <mat-select [placeholder]="'select new os'" [(ngModel)]="selectedOs">
+        <mat-option [value]="os" *ngFor="let os of enableOs">{{os}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button color="primary" (click)="showDialog()" [disabled]="!selectedOs">install</button>
+  </div>
+  <div class="reset-pwd-container"></div>
+  <div class="migrate-dc-container"></div>
+</div>

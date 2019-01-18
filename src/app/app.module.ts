@@ -23,7 +23,7 @@ import {
   MatDialogModule, MatDividerModule,
   MatFormFieldModule, MatGridListModule,
   MatIconModule,
-  MatInputModule, MatListModule, MatProgressBarModule, MatProgressSpinnerModule, MatSnackBarModule,
+  MatInputModule, MatListModule, MatProgressBarModule, MatProgressSpinnerModule, MatSelectModule, MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -35,6 +35,8 @@ import {AppBarComponent} from './components/app-bar/app-bar.component';
 import {ServerDetailItemComponent} from './components/server-detail-item/server-detail-item.component';
 import {VpsDetailStatisticComponent} from './components/vps-detail-statistic/vps-detail-statistic.component';
 import {NgxEchartsModule} from 'ngx-echarts';
+import {VpsCommonComponent} from './components/vps-common/vps-common.component';
+import {WarnDialogComponent} from './components/warnning-dialog/warn-dialog.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -53,6 +55,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppBarComponent,
     ServerDetailItemComponent,
     VpsDetailStatisticComponent,
+    VpsCommonComponent,
+    WarnDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     AppRoutingModule,
     MatButtonModule,
+    MatSelectModule,
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
@@ -83,7 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [ElectronService],
-  entryComponents: [AddNewServerDialogComponent],
+  entryComponents: [AddNewServerDialogComponent, WarnDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

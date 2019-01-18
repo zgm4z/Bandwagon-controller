@@ -9,7 +9,7 @@ export class ByteUperPipe implements PipeTransform {
   }
 
   transform(bytes: number, args: string): number {
-    switch (args) {
+    switch (args.toUpperCase()) {
       case 'GB': {
         return Number((bytes / 1024 / 1024 / 1024).toFixed(2));
       }

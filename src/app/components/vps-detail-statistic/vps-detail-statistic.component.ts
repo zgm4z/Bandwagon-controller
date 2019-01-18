@@ -35,9 +35,9 @@ export class VpsDetailStatisticComponent implements OnInit {
     this.api.rawUsageStats(this.veid, this.key)
       .subscribe(res => {
         res.data.filter((item) => {
-          const dataYear = this.datePipe.transform(item.timestamp * 1000, 'yyyy-MM-dd');
-          const currentYear = this.datePipe.transform(Date.now(), 'yyyy-MM-dd');
-          return dataYear === currentYear;
+          const dataDay = this.datePipe.transform(item.timestamp * 1000, 'yyyy-MM-dd');
+          const today = this.datePipe.transform(Date.now(), 'yyyy-MM-dd');
+          return dataDay === today;
         }).forEach(item => {
           this.date.push(this.datePipe.transform(item.timestamp * 1000, 'HH:mm:ss'));
           this.cpuData.push(item.cpu_usage);
@@ -122,7 +122,7 @@ export class VpsDetailStatisticComponent implements OnInit {
         {
           type: 'value',
           axisLabel: {
-            formatter: '{value} MB/s'
+            formatter: '{value} MB'
           }
         }
       ],
