@@ -1,13 +1,19 @@
 <div class="vps-common-container">
   <div class="reinstall-os-container">
     <h3>install new os</h3>
+    <p style="font-size: 12px;color: red">this operation will destroy all data</p>
+    <div class="os-tips">
+      <p>current os : {{currentOs}}</p>
+      <p>will install new os: {{ selectedOs}}</p>
+    </div>
     <mat-form-field>
       <mat-select [placeholder]="'select new os'" [(ngModel)]="selectedOs">
         <mat-option [value]="os" *ngFor="let os of enableOs">{{os}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button color="primary" (click)="showDialog()" [disabled]="!selectedOs">install</button>
+    <button mat-button color="primary" (click)="checkoutReinstallOs()" [disabled]="!selectedOs">install</button>
   </div>
+  <mat-divider></mat-divider>
   <div class="reset-pwd-container"></div>
   <div class="migrate-dc-container"></div>
 </div>

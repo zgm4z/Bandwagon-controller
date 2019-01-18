@@ -32,8 +32,16 @@ export class VpsCommonComponent implements OnInit {
       });
   }
 
+  checkoutReinstallOs() {
+    this.showDialog((res) => {
+      if (res) {
+        this.api.reInstallOS(this.veid, this.key, this.selectedOs).subscribe();
+      }
+    });
+  }
+
   showDialog(afterClose: Function) {
     const ref = this.dialog.open(WarnDialogComponent);
-    ref.afterClosed().subscribe(afterClose);
+    ref.afterClosed().subscribe(v => afterClose(v));
   }
 }
