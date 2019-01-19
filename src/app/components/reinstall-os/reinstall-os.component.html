@@ -7,7 +7,7 @@
   </div>
   <mat-form-field>
     <mat-select [placeholder]="'select new os'" [(ngModel)]="selectedOs">
-      <mat-option [value]="os" *ngFor="let os of enableOs">{{os}}</mat-option>
+      <mat-option [disabled]="os == currentOs" [value]="os" *ngFor="let os of enableOs">{{os}}</mat-option>
     </mat-select>
   </mat-form-field>
   <div style="padding-bottom: 20px">

@@ -17,7 +17,7 @@
     </p>
     <mat-form-field>
       <mat-select [placeholder]="'select new DC'" [(ngModel)]="willMoveDC">
-        <mat-option [value]="dc" *ngFor="let dc of dcList">
+        <mat-option [disabled]="currentDC == dc.locations + '/' + dc.desc" [value]="dc" *ngFor="let dc of dcList">
           {{dc.locations}}/{{dc.desc}}
         </mat-option>
       </mat-select>

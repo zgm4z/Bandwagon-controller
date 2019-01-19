@@ -167,7 +167,7 @@ export class VpsDetailStatisticComponent implements OnInit {
         {
           type: 'value',
           axisLabel: {
-            formatter: '{value} MB/s'
+            formatter: '{value} MB'
           }
         }
       ],

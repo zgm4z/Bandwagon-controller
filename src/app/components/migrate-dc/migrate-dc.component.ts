@@ -35,7 +35,7 @@ export class MigrateDcComponent implements OnInit {
   private getDC() {
     this.api.dc_list(this.veid, this.key)
       .subscribe(res => {
-        this.currentDC = `${res.currentLocation} / ${res.descriptions[res.currentLocation]}`;
+        this.currentDC = `${res.currentLocation}/${res.descriptions[res.currentLocation]}`;
         this.dcList = res.locations.map(location => {
           return {
             dataTransferMultiplier: res.dataTransferMultipliers[location],
