@@ -1,0 +1,31 @@
+<div class="migrate-dc-container">
+  <h3>migrate to another DC</h3>
+  <p class="tips">
+    This feature allows you to physically move your VPS to another location.<br>
+    During the migration, all data on your VPS is preserved, and the total downtime will be only a few seconds to few
+    minutes. However, the IP address of your VPS will change.
+  </p>
+  <div>
+    <p>
+      Current DC: <span class="dc">{{currentDC}}</span>
+    </p>
+    <p>
+      will move to: <span class="dc">{{willMoveDC.locations}} / {{willMoveDC.desc}}</span>
+    </p>
+    <p>
+      Data Transfer Multiplier:<span class="dc">{{willMoveDC.dataTransferMultiplier}}</span>
+    </p>
+    <mat-form-field>
+      <mat-select [placeholder]="'select new DC'" [(ngModel)]="willMoveDC">
+        <mat-option [value]="dc" *ngFor="let dc of dcList">
+          {{dc.locations}}/{{dc.desc}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="warn" (click)="migrateDc()"
+              [disabled]="!canMigrate || willMoveDC.locations =='' ">migrate now
+      </button>
+    </div>
+  </div>
+</div>

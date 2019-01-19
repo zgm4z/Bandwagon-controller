@@ -1,0 +1,18 @@
+<div class="reinstall-os-container">
+  <h3>install new os</h3>
+  <p class="tips">this operation will destroy all data</p>
+  <div class="os-tips">
+    <p>current os : <span class="os">{{currentOs}}</span></p>
+    <p>will install new os: <span class="os">{{ selectedOs}}</span></p>
+  </div>
+  <mat-form-field>
+    <mat-select [placeholder]="'select new os'" [(ngModel)]="selectedOs">
+      <mat-option [value]="os" *ngFor="let os of enableOs">{{os}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div style="padding-bottom: 20px">
+    <button mat-raised-button color="primary" (click)="checkoutReinstallOs()" [disabled]="!selectedOs">install
+    </button>
+  </div>
+</div>
+<mat-divider></mat-divider>
