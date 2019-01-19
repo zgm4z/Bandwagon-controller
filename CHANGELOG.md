@@ -1,3 +1,10 @@
+## 1.1.0 (2019-01-19)
+
+* fix: build error and prod enviroment new window issue ([6d4e1c5](https://github.com/zgm4z/bandwagon-controller/commit/6d4e1c5))
+* update changelog ([39c7b4d](https://github.com/zgm4z/bandwagon-controller/commit/39c7b4d))
+
+
+
 ## 1.0.0 (2019-01-19)
 
 * add vps common operation ([b1bf866](https://github.com/zgm4z/bandwagon-controller/commit/b1bf866))
