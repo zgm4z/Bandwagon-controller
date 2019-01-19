@@ -38,6 +38,9 @@ import {NgxEchartsModule} from 'ngx-echarts';
 import {VpsCommonComponent} from './components/vps-common/vps-common.component';
 import {WarnDialogComponent} from './components/warnning-dialog/warn-dialog.component';
 import {ApiRequestIntercept} from './api-request-intercept';
+import { ResetRootPasswordComponent } from './components/reset-root-password/reset-root-password.component';
+import { ReinstallOSComponent } from './components/reinstall-os/reinstall-os.component';
+import { MigrateDcComponent } from './components/migrate-dc/migrate-dc.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -58,6 +61,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     VpsDetailStatisticComponent,
     VpsCommonComponent,
     WarnDialogComponent,
+    ResetRootPasswordComponent,
+    ReinstallOSComponent,
+    MigrateDcComponent,
   ],
   imports: [
     BrowserModule,

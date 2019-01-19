@@ -1,5 +1,4 @@
 .vps-common-container {
-  padding-top: 20px;
   text-align: center;
   justify-content: center;
 }
@@ -11,20 +10,4 @@
   color: red;
   size: 12px;
   word-break: break-word;
-}
-
-.pwd, .dc {
-  color: cornflowerblue;
-}
-
-.dc {
-  padding-left: 8px;
-}
-
-mat-option {
-  width: 500px;
-}
-
-.reinstall-os-container, .reset-pwd-container, .migrate-dc-container {
-  padding-top: 20px;
 }
