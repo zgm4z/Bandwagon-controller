@@ -42,6 +42,8 @@ export class ResetRootPasswordComponent implements OnInit {
             this.canRestPwd = true;
             this.store.set(`${this.veid}_root`, this.prevPwd);
           });
+      } else {
+        this.canRestPwd = true;
       }
     });
 

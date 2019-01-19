@@ -8,9 +8,9 @@ import {ActivatedRoute, Params} from '@angular/router';
 })
 export class ServerDetailComponent implements OnInit {
 
-  private key: string;
-  private name: string;
-  private veid: string;
+   key: string;
+   name: string;
+   veid: string;
 
   constructor(private activateRouter: ActivatedRoute) {
 

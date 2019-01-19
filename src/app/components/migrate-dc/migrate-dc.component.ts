@@ -20,7 +20,7 @@ export class MigrateDcComponent implements OnInit {
   currentDC = '';
   willMoveDC: Dc = {locations: '', desc: '', dataTransferMultiplier: 0};
   dcList: Array<Dc> = [];
-  private canMigrate = true;
+   canMigrate = true;
 
   ngOnInit() {
     this.getDC();

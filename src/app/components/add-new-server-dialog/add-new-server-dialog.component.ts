@@ -9,7 +9,7 @@ import {MatDialogRef} from '@angular/material';
 })
 export class AddNewServerDialogComponent implements OnInit {
 
-  private serverModel: ServerModel = new ServerModel();
+   serverModel: ServerModel = new ServerModel();
 
   constructor(private dialogRef: MatDialogRef<any, any>) {
   }

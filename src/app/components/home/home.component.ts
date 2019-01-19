@@ -13,7 +13,7 @@ import {RateLimit} from '../../model/ApiTypes';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private savedServers: Array<ServerModel>;
+   savedServers: Array<ServerModel>;
   store: Store;
 
   constructor(private addNewServerDialog: MatDialog, private snackBar: MatSnackBar, private api: HttpVpsService) {
