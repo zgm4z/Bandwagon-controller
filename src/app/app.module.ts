@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -37,6 +37,7 @@ import {VpsDetailStatisticComponent} from './components/vps-detail-statistic/vps
 import {NgxEchartsModule} from 'ngx-echarts';
 import {VpsCommonComponent} from './components/vps-common/vps-common.component';
 import {WarnDialogComponent} from './components/warnning-dialog/warn-dialog.component';
+import {ApiRequestIntercept} from './api-request-intercept';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -87,7 +88,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [ElectronService,
+    {provide: HTTP_INTERCEPTORS, useClass: ApiRequestIntercept, multi: true}],
   entryComponents: [AddNewServerDialogComponent, WarnDialogComponent],
   bootstrap: [AppComponent]
 })

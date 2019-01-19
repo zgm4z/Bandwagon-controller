@@ -2,11 +2,11 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {HttpVpsService} from '../../providers/http-vps.service';
 import {KVM, OVZ} from '../../model/ApiTypes';
 import {ByteUperPipe} from '../../pipes/byteUper.pipe';
-import Timer = NodeJS.Timer;
 import {Router} from '@angular/router';
 import * as url from 'url';
 import * as path from 'path';
 import {AppConfig} from '../../../environments/environment';
+import Timer = NodeJS.Timer;
 
 
 @Component({
@@ -41,9 +41,10 @@ export class ServerItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.getInfo();
     this.interval = setInterval(() => {
       this.getInfo();
-    }, 5 * 1000);
+    }, 60 * 1000);
   }
 
   ngOnDestroy(): void {
@@ -141,8 +142,7 @@ export class ServerItemComponent implements OnInit, OnDestroy {
   }
 
   goToDetail() {
-    const remote = require('electron').remote;
-    const BrowserWindow = remote.BrowserWindow;
+    const BrowserWindow = require('electron').remote.BrowserWindow;
     const win = new BrowserWindow({
       width: 800,
       height: 800,
