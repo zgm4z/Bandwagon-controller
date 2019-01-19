@@ -9,7 +9,7 @@ Bandwagon VPS controller PC client build on Electron + Angular
 Clone this repository locally :
 
 ``` bash
-git@github.com:zgm4z/Bandwagon-controller.git
+git clone git@github.com:zgm4z/bandwagon-controller.git
 ```
 
 Install dependencies with npm :
@@ -23,6 +23,9 @@ Please follow [Angular-cli documentation](https://github.com/angular/angular-cli
 
 ``` bash
 npm install -g @angular/cli
+```
+run:
+```bash
 npm run start
 ```
 
@@ -44,3 +47,4 @@ npm run start
 - [ ] snapshot
 - [ ] backup
 - [ ] shell
+- [ ] ovz vps statistic support
