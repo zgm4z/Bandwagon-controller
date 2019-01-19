@@ -1,7 +1,7 @@
 <div class="vps-common-container">
   <div class="reinstall-os-container">
     <h3>install new os</h3>
-    <p style="font-size: 12px;color: red">this operation will destroy all data</p>
+    <p class="tips">this operation will destroy all data</p>
     <div class="os-tips">
       <p>current os : {{currentOs}}</p>
       <p>will install new os: {{ selectedOs}}</p>
@@ -11,18 +11,52 @@
         <mat-option [value]="os" *ngFor="let os of enableOs">{{os}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button color="primary" (click)="checkoutReinstallOs()" [disabled]="!selectedOs">install</button>
+    <div>
+      <button mat-raised-button color="primary" (click)="checkoutReinstallOs()" [disabled]="!selectedOs">install
+      </button>
+    </div>
   </div>
   <mat-divider></mat-divider>
   <div class="reset-pwd-container">
     <h3>root password modification</h3>
-    <p style="font-size: 12px;color: red">this operation will reset current vps root password</p>
-    <div class="pas-tips">
+    <p class="tips">
+      This will generate and set a new root password.
+      If you'd like to set a custom password, then you would have to use SSH client or Interactive root shell.
+    </p>
+    <div>
       <button mat-raised-button color="warn" [disabled]="!canRestPwd" (click)="resetPassword()">rest root password
       </button>
       <p>current password is: <span class="pwd">{{prevPwd}}</span></p>
     </div>
   </div>
   <mat-divider></mat-divider>
-  <div class="migrate-dc-container"></div>
+  <div class="migrate-dc-container">
+    <h3>migrate to another DC</h3>
+    <p class="tips">
+      This feature allows you to physically move your VPS to another location.<br>
+      During the migration, all data on your VPS is preserved, and the total downtime will be only a few seconds to few
+      minutes. However, the IP address of your VPS will change.
+    </p>
+    <div>
+      <p>
+        Current DC: <span class="dc">{{currentDC}}</span>
+      </p>
+      <p>
+        will move to: <span class="dc">{{willMoveDC.locations}} / {{willMoveDC.desc}}</span>
+      </p>
+      <p>
+        Data Transfer Multiplier:<span class="dc">{{willMoveDC.dataTransferMultiplier}}</span>
+      </p>
+      <mat-form-field>
+        <mat-select [placeholder]="'select new DC'" [(ngModel)]="willMoveDC">
+          <mat-option [value]="dc" *ngFor="let dc of dcList">
+            {{dc.locations}}/{{dc.desc}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="warn" (click)="migrateDc()" [disabled]="!canMigrate">migrate now</button>
+      </div>
+    </div>
+  </div>
 </div>

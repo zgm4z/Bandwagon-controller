@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {
-  getAvailableOS,
+  getAvailableOS, getDcList,
   getLiveServiceInfo, getRateLimitStatus,
   getRawUsageStats,
   getServiceInfo,
@@ -13,7 +13,7 @@ import {
   stop
 } from '../model/API';
 import {Observable} from 'rxjs';
-import {AvailableOS, KVM, OVZ, RateLimit, ResetPwdResult, ServerInfo, VpsUsageRaw} from '../model/ApiTypes';
+import {AvailableOS, DataCenterList, KVM, OVZ, RateLimit, ResetPwdResult, ServerInfo, VpsUsageRaw} from '../model/ApiTypes';
 
 
 @Injectable({
@@ -21,6 +21,18 @@ import {AvailableOS, KVM, OVZ, RateLimit, ResetPwdResult, ServerInfo, VpsUsageRa
 })
 export class HttpVpsService {
   constructor(private http: HttpClient) {
+  }
+
+  public dc_list(veid: string, key: string): Observable<DataCenterList> {
+    return this.http.post<DataCenterList>(getDcList, null, {
+      params: {api_key: key, veid: veid}
+    });
+  }
+
+  public migrate_dc(veid: string, key: string, location: string) {
+    return this.http.post<DataCenterList>(getDcList, null, {
+      params: {api_key: key, veid: veid, location: location}
+    });
   }
 
   public start(veid: string, key: string) {

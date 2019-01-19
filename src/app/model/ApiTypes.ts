@@ -76,3 +76,15 @@ export interface VpsUsageRaw extends ApiBase {
 }
 
 
+export interface DataCenterList {
+  currentLocation: string; // ID of current location
+  locations: Array<string>; // IDs of locations available for migration into
+  descriptions: { [dcName: string]: string }; // Friendly descriptions of available locations
+  dataTransferMultipliers: { [dcName: string]: number };
+}
+
+export interface Dc {
+  dataTransferMultiplier: number;
+  locations: string;
+  desc: string;
+}

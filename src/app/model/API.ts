@@ -11,3 +11,5 @@ export const resetRootPassword = `${base}resetRootPassword`;
 export const getRawUsageStats = `${base}getRawUsageStats`;
 export const setHostname = `${base}setHostname`;
 export const getRateLimitStatus = `${base}getRateLimitStatus`;
+export const getDcList = `${base}migrate/getLocations`;
+export const migrate = `${base}migrate/start`;

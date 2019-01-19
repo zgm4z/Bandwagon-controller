@@ -3,6 +3,7 @@ import {HttpVpsService} from '../../providers/http-vps.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {WarnDialogComponent} from '../warnning-dialog/warn-dialog.component';
 import {Store} from '../../model/UserDataKeys';
+import {Dc} from '../../model/ApiTypes';
 
 @Component({
   selector: 'app-vps-common',
@@ -20,6 +21,10 @@ export class VpsCommonComponent implements OnInit {
   canRestPwd = true;
   private Store = require('electron-store');
   store: Store = new this.Store();
+  currentDC = '';
+  willMoveDC: Dc = {locations: '', desc: '', dataTransferMultiplier: 0};
+  dcList: Array<Dc> = [];
+  private canMigrate = true;
 
   constructor(private api: HttpVpsService, private dialog: MatDialog,
               private snackBar: MatSnackBar) {
@@ -27,6 +32,7 @@ export class VpsCommonComponent implements OnInit {
 
   ngOnInit() {
     this.getOs();
+    this.getDC();
     if (this.store.has(`${this.veid}_root`)) {
       this.prevPwd = this.store.get(`${this.veid}_root`, '');
     }
@@ -66,6 +72,33 @@ export class VpsCommonComponent implements OnInit {
             this.canRestPwd = true;
             this.store.set(`${this.veid}_root`, this.prevPwd);
           });
+      }
+    });
+
+  }
+
+  private getDC() {
+    this.api.dc_list(this.veid, this.key)
+      .subscribe(res => {
+        this.currentDC = `${res.currentLocation} / ${res.descriptions[res.currentLocation]}`;
+        this.dcList = res.locations.map(location => {
+          return {
+            dataTransferMultiplier: res.dataTransferMultipliers[location],
+            desc: res.descriptions[location],
+            locations: location
+          };
+        });
+      });
+  }
+
+  migrateDc() {
+    this.canMigrate = false;
+    this.showDialog(res => {
+      if (res) {
+        this.api.migrate_dc(this.veid, this.key, this.willMoveDC.locations)
+          .subscribe(() => this.canMigrate = true);
+      } else {
+        this.canMigrate = true;
       }
     });
 
