@@ -34,6 +34,13 @@ npm run start
 
 ![](screenshot/state.png)
 
-## TODO
+## feature
 
-more feature under devlopent，coming soon...
+- [x] status controll
+- [x] statistic with graph
+- [x] reset root password
+- [x] reinstall os
+- [x] migrate  dc
+- [ ] snapshot
+- [ ] backup
+- [ ] shell
