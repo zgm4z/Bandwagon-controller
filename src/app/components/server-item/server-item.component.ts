@@ -7,6 +7,7 @@ import * as url from 'url';
 import * as path from 'path';
 import {AppConfig} from '../../../environments/environment';
 import Timer = NodeJS.Timer;
+import {ElectronService} from '../../providers/electron.service';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class ServerItemComponent implements OnInit, OnDestroy {
   load_average: string;
   interval: Timer;
 
-  constructor(private api: HttpVpsService, private nav: Router) {
+  constructor(private api: HttpVpsService, private els: ElectronService) {
   }
 
   ngOnInit() {
@@ -142,26 +143,6 @@ export class ServerItemComponent implements OnInit, OnDestroy {
   }
 
   goToDetail() {
-    const BrowserWindow = require('electron').remote.BrowserWindow;
-    const win = new BrowserWindow({
-      width: 800,
-      height: 800,
-      center: true,
-      transparent: false,
-      resizable: false,
-      webPreferences: {
-        webSecurity: false
-      }
-    });
-
-    if (!AppConfig.production) {
-      win.loadURL(`http://localhost:4200/index.html#/detail?veid=${this.veid}&name=${this.name}&key=${this.key}`);
-    } else {
-      win.loadURL(url.format({
-        pathname: path.join(__dirname, `dist/index.html#/detail?veid=${this.veid}&name=${this.name}&key=${this.key}`),
-        protocol: 'file:',
-        slashes: true
-      }));
-    }
+    this.els.ipcRenderer.send('request-detail', {veid: this.veid, key: this.key, name: name});
   }
 }

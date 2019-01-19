@@ -13,7 +13,7 @@ import {RateLimit} from '../../model/ApiTypes';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-   savedServers: Array<ServerModel>;
+  savedServers: Array<ServerModel>;
   store: Store;
 
   constructor(private addNewServerDialog: MatDialog, private snackBar: MatSnackBar, private api: HttpVpsService) {
@@ -35,8 +35,10 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe((res) => {
       if (res instanceof ServerModel) {
         const wasInclude = this.savedServers.find((test) => test.api_veid === res.api_veid);
-        if (wasInclude || this.checkServerExist(res)) {
-          this.snackBar.open('Server was exist or config error', 'OKay', {duration: 5 * 1000});
+        if (wasInclude !== undefined && res.api_key === wasInclude.api_key) {
+          this.snackBar.open('Server was exist', 'OKay', {duration: 5 * 1000});
+        } else if (!this.checkServerExist(res)) {
+          this.snackBar.open('Server not exist in remote', 'OKay', {duration: 5 * 1000});
         } else {
           this.savedServers.push(res);
           this.store.set(servers, this.savedServers);
@@ -47,6 +49,6 @@ export class HomeComponent implements OnInit {
 
   async checkServerExist(server: ServerModel) {
     const res: RateLimit = await this.api.rateLimitState(server.api_veid, server.api_key).toPromise();
-    return res.error !== 0;
+    return res.error === 0;
   }
 }
