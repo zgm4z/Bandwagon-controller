@@ -37,9 +37,9 @@ npm run start
 
 ![](screenshot/state.png)
 
-## feature
+## features
 
-- [x] status controll
+- [x] status control
 - [x] statistic with graph
 - [x] reset root password
 - [x] reinstall os
