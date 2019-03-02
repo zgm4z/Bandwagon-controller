@@ -99,7 +99,7 @@ function createWindow() {
       slashes: true
     }));
   }
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
 // Emitted when the window is closed.
   win.on('closed', () => {
@@ -127,7 +127,7 @@ function openDetailWindow(veid: string, key: string, name: string) {
   } else {
     detailwin.loadURL(`file://${__dirname}/dist/index.html#/detail?veid=${veid}&name=${name}&key=${key}`);
   }
-  detailwin.webContents.openDevTools();
+  // detailwin.webContents.openDevTools();
 }
 
 try {
