@@ -2,9 +2,6 @@ import {app, BrowserWindow, screen, Menu, ipcMain} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import {Store} from './src/app/model/UserDataKeys';
-import {logger} from 'codelyzer/util/logger';
-import protocol = Electron.protocol;
-
 const Store = require('electron-store');
 let win;
 const args = process.argv.slice(1);

@@ -8,6 +8,7 @@ import * as path from 'path';
 import {AppConfig} from '../../../environments/environment';
 import Timer = NodeJS.Timer;
 import {ElectronService} from '../../providers/electron.service';
+import {isNumber} from 'util';
 
 
 @Component({
@@ -45,7 +46,7 @@ export class ServerItemComponent implements OnInit, OnDestroy {
     this.getInfo();
     this.interval = setInterval(() => {
       this.getInfo();
-    }, 60 * 1000);
+    }, 30 * 1000);
   }
 
   ngOnDestroy(): void {
@@ -55,7 +56,7 @@ export class ServerItemComponent implements OnInit, OnDestroy {
 
   initCommon() {
     this.data_used = this.pipe.transform(this.liveInfo.data_counter * this.liveInfo.monthly_data_multiplier, 'GB');
-    this.data_total = this.pipe.transform(this.liveInfo.plan_monthly_data, 'GB');
+    this.data_total = this.pipe.transform(this.liveInfo.plan_monthly_data * this.liveInfo.monthly_data_multiplier, 'GB');
   }
 
   initKvmInfo() {
@@ -121,6 +122,9 @@ export class ServerItemComponent implements OnInit, OnDestroy {
 
   getInfo() {
     this.api.liveServiceInfo(this.veid, this.key).subscribe(v => {
+      if (!isNumber(v.monthly_data_multiplier)) {
+        v.monthly_data_multiplier = 1;
+      }
       this.loading = false;
       this.liveInfo = v;
       this.initCommon();
