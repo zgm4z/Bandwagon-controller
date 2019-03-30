@@ -1,3 +1,19 @@
+## 1.1.1 (2019-03-30)
+
+* change: from npm migrate to yarn ([2625cfb](https://github.com/zgm4z/bandwagon-controller/commit/2625cfb))
+* fix: correction of bandwidth usage calculate issue ([79a0a69](https://github.com/zgm4z/bandwagon-controller/commit/79a0a69))
+
+
+
+## <small>1.1.1 (2019-03-02)</small>
+
+* disabled devtools ([2ef9864](https://github.com/zgm4z/bandwagon-controller/commit/2ef9864))
+* rewrite changelog ([4b0c3af](https://github.com/zgm4z/bandwagon-controller/commit/4b0c3af))
+* Typo fix ([5d4da10](https://github.com/zgm4z/bandwagon-controller/commit/5d4da10))
+* update readme ([928d6fb](https://github.com/zgm4z/bandwagon-controller/commit/928d6fb))
+
+
+
 ## 1.1.0 (2019-01-19)
 
 * fix: build error and prod enviroment new window issue ([6d4e1c5](https://github.com/zgm4z/bandwagon-controller/commit/6d4e1c5))
